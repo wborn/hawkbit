@@ -19,7 +19,7 @@ The GitHub Actions workflow publishes:
 
 ## Runtime
 
-The container exposes port `8080` and stores hawkBit data in `/opt/hawkbit/data`.
+The container exposes port `8080` and stores hawkBit artifacts in `/opt/hawkbit/artifactrepo`.
 
 The JVM is started with:
 
@@ -37,13 +37,13 @@ The JVM is started with:
 
 ## Configuration
 
-These settings are the main runtime properties used by this image in Compose deployments. They can be supplied as Spring properties, command-line arguments, or environment variables, depending on how you run the container. When using Compose, mount `/opt/hawkbit/data` for persistent hawkBit data.
+These settings are the main runtime properties used by this image in Compose deployments. They can be supplied as Spring properties, command-line arguments, or environment variables, depending on how you run the container. When using Compose, mount `/opt/hawkbit/artifactrepo` for persistent hawkBit artifact storage.
 
 Example Compose service entries:
 
 ```yaml
 volumes:
-  - hawkbit-data:/opt/hawkbit/data
+  - hawkbit-artifact-data:/opt/hawkbit/artifactrepo
 environment:
   - LOGGING_LEVEL_ROOT=INFO
   - SPRING_DATASOURCE_URL=jdbc:postgresql://hawkbitdb:5432/hawkbit

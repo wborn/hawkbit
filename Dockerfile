@@ -20,7 +20,7 @@ RUN set -x \
     && microdnf -y install --nodocs wget \
     && gpg --import KEY \
     && useradd --uid 1001 --home-dir $HAWKBIT_HOME --create-home --shell /sbin/nologin hawkbit \
-    && mkdir -p $HAWKBIT_HOME/data \
+    && mkdir -p $HAWKBIT_HOME/artifactrepo \
     && cd $HAWKBIT_HOME \
     && wget -O hawkbit-update-server.jar --no-verbose https://repo1.maven.org/maven2/org/eclipse/hawkbit/hawkbit-update-server/$HAWKBIT_VERSION/hawkbit-update-server-$HAWKBIT_VERSION.jar \
     && wget -O hawkbit-update-server.jar.asc --no-verbose https://repo1.maven.org/maven2/org/eclipse/hawkbit/hawkbit-update-server/$HAWKBIT_VERSION/hawkbit-update-server-$HAWKBIT_VERSION.jar.asc \
@@ -29,7 +29,7 @@ RUN set -x \
     && chmod -R g=u $HAWKBIT_HOME \
     && microdnf clean all
 
-VOLUME "$HAWKBIT_HOME/data"
+VOLUME "$HAWKBIT_HOME/artifactrepo"
 
 WORKDIR $HAWKBIT_HOME
 USER hawkbit
