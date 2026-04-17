@@ -29,7 +29,6 @@ RUN set -x \
     && chmod -R g=u $HAWKBIT_HOME \
     && microdnf clean all
 
-VOLUME "$HAWKBIT_HOME/artifactrepo"
 
 WORKDIR $HAWKBIT_HOME
 USER hawkbit
